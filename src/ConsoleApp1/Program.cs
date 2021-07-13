@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using LanguageExt;
 using LanguageExt.Sys.Live;
 using static LanguageExt.Prelude;
@@ -8,13 +9,17 @@ namespace ConsoleApp1
 {
     internal class Program
     {
-        private static void Main(string[] args) =>
-            Main().Run(Runtime.New()).ThrowIfFail();
+        private static Task Main(string[] args) =>
+            from x in Main().Run(Runtime.New()).ToRef()
+            let r = x.ThrowIfFail()
+            select r;
 
-        static Eff<Runtime, Unit> Main() =>
-            repeat(from l in readLine
-                   from v in parseInt(l).ToEff()
-                   from _ in writeLine($"{v}")
+        static Aff<Runtime, Unit> Main() =>
+            repeat(from l in readLine.ToAsync()
+                   from v in parseInt(l).ToAff()
+                   from _ in writeLine($"{v}").ToAsync()
                    select unit);
+
+        
     }
 }
