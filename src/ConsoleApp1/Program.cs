@@ -15,11 +15,9 @@ namespace ConsoleApp1
             select r;
 
         static Aff<Runtime, Unit> Main() =>
-            repeat(from l in readLine.ToAsync()
+            repeat(from l in readLine.ToAff()
                    from v in parseInt(l).ToAff()
-                   from _ in writeLine($"{v}").ToAsync()
+                   from _ in writeLine($"{v}").ToAff()
                    select unit);
-
-        
     }
 }
