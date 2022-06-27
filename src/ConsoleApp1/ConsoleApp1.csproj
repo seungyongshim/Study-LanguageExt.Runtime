@@ -5,7 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Update="LanguageExt.Core" Version="3.5.50-beta" />
+    <PackageReference Update="LanguageExt.Core" Version="4.2.8" />
     <PackageReference Update="LanguageExt.Sys" Version="3.5.50-beta" />
   </ItemGroup>
 
